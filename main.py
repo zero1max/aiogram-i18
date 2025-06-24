@@ -1,4 +1,4 @@
-import asyncio
+import asyncio, os
 from handlers import common
 from contextlib import suppress
 from aiogram import Bot, Dispatcher
@@ -7,14 +7,17 @@ from logging import basicConfig, INFO
 from aiogram_i18n import I18nMiddleware
 from aiogram.client.default import DefaultBotProperties
 from aiogram_i18n.cores.fluent_runtime_core import FluentRuntimeCore
+from dotenv import load_dotenv
 
-TOKEN = ""
+load_dotenv()
+
+TOKEN = os.getenv("BOT_TOKEN")
 
 
 async def main():
     basicConfig(level=INFO)
     bot = Bot(
-        token=TOKEN,
+        token=TOKEN, # type: ignore
         default=DefaultBotProperties(parse_mode=ParseMode.HTML)
     )
     dp = Dispatcher()

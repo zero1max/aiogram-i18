@@ -9,7 +9,7 @@ router = Router(name=__name__)
 
 @router.message(CommandStart())
 async def start(message: Message, i18n: I18nContext) -> None:
-    name = message.from_user.mention_html()
+    name = message.from_user.mention_html() # type: ignore
     await message.answer(
         text=i18n.get("hello", user=name),
         reply_markup=main_keyboard
